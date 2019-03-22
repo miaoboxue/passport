@@ -41,6 +41,38 @@ class ApiController extends Controller
         }else{
             echo 222;
         }
+    }
+    public function apilogin(Request $request){
+       //echo '<pre>';print_r($_POST);echo '</pre>';die;
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $userInfo=ApiUserModel::where(['email'=>$email])->first();
+        if(empty($userInfo)){
+            $response=[
+                'errno'=>40001,
+                'msg'=>'账号不存在',
+            ];
+            return $response;
+        }
+        if(password_verify($password,$userInfo->password)){
+            $token = substr(md5(time() . mt_rand(1,99999)),10,10);
 
+
+            $redis_token_api_login='api:login:token'.$userInfo->id;
+            Redis::set($redis_token_api_login,$token);
+            Redis::expire($redis_token_api_login,time()+86400);
+
+            echo 'success';
+            $response=[
+                'erron'=>200,
+                'msg'=>'登录成功'
+            ]
+        }else{
+            $response=[
+                'erron'=>40000,
+                'msg'=>'账号或密码错误',
+            ]
+        }
+        return $response;
     }
 }

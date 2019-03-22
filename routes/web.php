@@ -167,6 +167,10 @@ Route::post('/ajax/mui','Curl\CurlController@ajaxmui');
 Route::get('/api/apilogin','Api\ApiController@userlogin');
 Route::post('/apilogin','Api\ApiController@loginall');
 
+//passport
+Route::post('/apiuser','Api\ApiController@apilogin');
+
+
 
 
 
