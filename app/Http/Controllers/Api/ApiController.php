@@ -66,12 +66,12 @@ class ApiController extends Controller
             $response=[
                 'erron'=>200,
                 'msg'=>'登录成功'
-            ]
+            ];
         }else{
             $response=[
                 'erron'=>40000,
                 'msg'=>'账号或密码错误',
-            ]
+            ];
         }
         return $response;
     }
