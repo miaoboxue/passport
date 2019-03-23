@@ -169,7 +169,8 @@ Route::post('/apilogin','Api\ApiController@loginall');
 
 //passport
 Route::post('/apiuser','Api\ApiController@apilogin');
-
+//个人中心
+Route::post('/center','Api\ApiController@center');
 
 
 

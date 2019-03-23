@@ -65,7 +65,8 @@ class ApiController extends Controller
             $response=[
                 'erron'=>0,
                 'msg'=>'登录成功',
-                'token'=>$token
+                'token'=>$redis_token_api_login,
+                'id'=>$userInfo->id
             ];
 
         }else{
@@ -75,5 +76,13 @@ class ApiController extends Controller
             ];
         }
         return $response;
+    }
+
+    //个人中心
+    public function center(Request $request){
+        $token = $request->input('token');
+        Redis::get();
+
+
     }
 }
