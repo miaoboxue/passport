@@ -81,7 +81,14 @@ class ApiController extends Controller
     //个人中心
     public function center(Request $request){
         $token = $request->input('token');
-        Redis::get();
+        $uid = $request->input('uid');
+        $notoken=Redis::get("api:login:token$uid");
+
+        if($token == $notoken ){
+            return 1;
+        }else{
+            return 0;
+        }
 
 
     }
