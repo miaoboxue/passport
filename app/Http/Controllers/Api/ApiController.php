@@ -62,11 +62,11 @@ class ApiController extends Controller
             Redis::set($redis_token_api_login,$token);
             Redis::expire($redis_token_api_login,time()+86400);
 
-            echo 'success';
             $response=[
-                'erron'=>200,
+                'erron'=>0,
                 'msg'=>'登录成功'
             ];
+
         }else{
             $response=[
                 'erron'=>40000,
