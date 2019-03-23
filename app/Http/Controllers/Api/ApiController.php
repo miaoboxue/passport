@@ -64,7 +64,8 @@ class ApiController extends Controller
 
             $response=[
                 'erron'=>0,
-                'msg'=>'登录成功'
+                'msg'=>'登录成功',
+                'token'=>$token
             ];
 
         }else{
